@@ -18,10 +18,10 @@ export class Game {
       up: this.p5.UP_ARROW,
     })
     this.alien = new Ship(this.p5, this.p5.width / 2, this.p5.height / 2, 20, 'red', Direction.UP, {
-      left: KC.A_CODE,
-      right: KC.D_CODE,
-      down: KC.S_CODE,
-      up: KC.W_CODE,
+      left: KC.A,
+      right: KC.D,
+      down: KC.S,
+      up: KC.W,
     })
   }
 
