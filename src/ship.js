@@ -1,21 +1,35 @@
+import { Mood } from './tools.js'
 import { KeyCodes as KC, Direction } from './tools.js'
 
 const speed = 1
 
 export class Ship {
-  constructor(p5, x, y, d, color, initialDirection, keys) {
+  constructor(p5, x, y, d, color, mood, initialDirection, keys) {
     this.p5 = p5
     this.x = x
     this.y = y
     this.r = d / 2
     this.color = color
+    this.mood = mood
     this.direction = initialDirection
     this.keys = keys
   }
 
   draw() {
-    this.p5.fill(this.color)
-    this.p5.circle(this.x, this.y, this.r * 2)
+    const { p5, x, y, r } = this
+    p5.fill(this.color)
+    p5.circle(x, y, r * 2)
+
+    // eyes
+    p5.circle(x - r / 3, y - r / 3, r / 2)
+    p5.circle(x + r / 3, y - r / 3, r / 2)
+
+    // mouth
+    if (this.mood === Mood.GOOD) {
+      p5.arc(x, y, r, r, 1, p5.PI - 1)
+    } else {
+      p5.arc(x, y + r * 0.9, r, r, p5.PI + 1, -1)
+    }
   }
 
   update(board) {

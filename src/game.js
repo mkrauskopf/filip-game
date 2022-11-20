@@ -1,4 +1,4 @@
-import { Direction, KeyCodes as KC } from './tools.js'
+import { Direction, KeyCodes as KC, Mood } from './tools.js'
 import { Ship } from './ship.js'
 
 export class Game {
@@ -11,14 +11,17 @@ export class Game {
 
   setup = () => {
     const { p5, board } = this
+    const r = 20
     p5.createCanvas(board.width, board.height)
-    this.ship = new Ship(p5, 20, 20, 20, 'lightblue', Direction.LEFT, {
+
+    this.ship = new Ship(p5, 20, 20, r, 'lightblue', Mood.GOOD, Direction.LEFT, {
       left: p5.LEFT_ARROW,
       right: p5.RIGHT_ARROW,
       down: p5.DOWN_ARROW,
       up: p5.UP_ARROW,
     })
-    this.alien = new Ship(p5, p5.width / 2, p5.height / 2, 20, 'red', Direction.UP, {
+
+    this.alien = new Ship(p5, p5.width / 2, p5.height / 2, r, 'red', Mood.BAD, Direction.UP, {
       left: KC.A,
       right: KC.D,
       down: KC.S,
