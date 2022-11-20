@@ -1,10 +1,12 @@
 {
   "scripts": {
+    "start": "serve .",
     "prettier": "prettier -c *.js && prettier-package-json -l ./package.json",
     "prettier:fix": "prettier -w *.js && prettier-package-json --write ./package.json"
   },
   "devDependencies": {
     "prettier": "2.7.1",
-    "prettier-package-json": "2.7.0"
+    "prettier-package-json": "2.7.0",
+    "serve": "14.1.2"
   }
 }
