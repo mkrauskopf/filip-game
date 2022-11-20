@@ -25,15 +25,16 @@ export class Ship {
   }
 
   updateDirection() {
-    if (this.p5.keyIsDown(this.keys.left)) {
+    const { p5, keys } = this
+    if (p5.keyIsDown(keys.left)) {
       this.direction = Direction.LEFT
-    } else if (this.p5.keyIsDown(this.keys.right)) {
+    } else if (p5.keyIsDown(keys.right)) {
       this.direction = Direction.RIGHT
-    } else if (this.p5.keyIsDown(this.keys.down)) {
+    } else if (p5.keyIsDown(keys.down)) {
       this.direction = Direction.DOWN
-    } else if (this.p5.keyIsDown(this.keys.up)) {
+    } else if (p5.keyIsDown(keys.up)) {
       this.direction = Direction.UP
-    } else if (this.p5.keyIsDown(KC.SPACE)) {
+    } else if (p5.keyIsDown(KC.SPACE)) {
       this.direction = Direction.NONE
     }
   }

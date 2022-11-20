@@ -10,14 +10,15 @@ export class Game {
   }
 
   setup = () => {
-    this.p5.createCanvas(this.board.width, this.board.height)
-    this.ship = new Ship(this.p5, 20, 20, 20, 'lightblue', Direction.LEFT, {
-      left: this.p5.LEFT_ARROW,
-      right: this.p5.RIGHT_ARROW,
-      down: this.p5.DOWN_ARROW,
-      up: this.p5.UP_ARROW,
+    const { p5, board } = this
+    p5.createCanvas(board.width, board.height)
+    this.ship = new Ship(p5, 20, 20, 20, 'lightblue', Direction.LEFT, {
+      left: p5.LEFT_ARROW,
+      right: p5.RIGHT_ARROW,
+      down: p5.DOWN_ARROW,
+      up: p5.UP_ARROW,
     })
-    this.alien = new Ship(this.p5, this.p5.width / 2, this.p5.height / 2, 20, 'red', Direction.UP, {
+    this.alien = new Ship(p5, p5.width / 2, p5.height / 2, 20, 'red', Direction.UP, {
       left: KC.A,
       right: KC.D,
       down: KC.S,
@@ -26,25 +27,27 @@ export class Game {
   }
 
   draw = () => {
+    const { p5, ship, alien, board } = this
     const hasCollided = this.checkCollision()
-    this.p5.background(hasCollided ? 'yellow' : 220)
+    p5.background(hasCollided ? 'yellow' : 220)
 
-    this.ship.draw()
-    this.alien.draw()
+    ship.draw()
+    alien.draw()
 
     if (hasCollided) {
-      this.p5.noLoop()
+      p5.noLoop()
       return
     }
 
-    this.ship.update(this.board)
-    this.alien.update(this.board)
+    ship.update(board)
+    alien.update(board)
   }
 
   checkCollision() {
-    const dx = this.ship.x - this.alien.x
-    const dy = this.ship.y - this.alien.y
+    const { ship, alien } = this
+    const dx = ship.x - alien.x
+    const dy = ship.y - alien.y
     const distance = Math.sqrt(dx ** 2 + dy ** 2)
-    return distance <= this.ship.r * 2 || distance <= this.alien.r * 2
+    return distance <= ship.r * 2 || distance <= alien.r * 2
   }
 }
